@@ -1,5 +1,7 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <ffi.h>
+#include <dlfcn.h>
 #include "foo.h"
 
 int main()
@@ -29,8 +31,16 @@ int main()
   bar_type_elements[1] = &ffi_type_sint;
   bar_type_elements[2] = NULL;
 
-  // Pointer to a called function
-  void *ptr = (void*)0x00000000004007fd;
+  // Getting pointer to a called function
+  char *name = "foo";
+  void *handler = dlopen(NULL, RTLD_LAZY);
+  if (!handler)
+  {
+    fprintf(stderr, "dlopen failed: %s\n", dlerror());
+    exit(EXIT_FAILURE);
+  }
+  void *ptr = dlsym(handler, name);
+  dlclose(handler);
   
   // Arguments initialization
   values[0] = &arg1;
