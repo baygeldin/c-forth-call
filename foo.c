@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "foo.h"
 
-void foo(int a, char b, double c)
+int foo(int a, char *b, struct bar c)
 {
-  printf("What do you mean by %d %c %g?\n", a, b, c);
+  printf("The integer is %d, string is \"%s\" and struct is  (%d, %d)\n", a, b, c.x, c.y);
+  return 0xdeadbeef;
 }

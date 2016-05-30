@@ -1,6 +1,11 @@
 #ifndef FOO
 #define FOO
 
-void foo(int a, char b, double c);
+struct bar {
+  int x;
+  int y;
+};
+
+int foo(int a, char *b, struct bar c);
 
 #endif
