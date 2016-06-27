@@ -1,12 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <ffi.h>
-#include <dlfcn.h>
-#include "foo.h"
+#include <pforth.h>
+
+typedef struct {
+  int x;
+  int y;
+} bar;
+
+int foo(int a, char *b, bar c);
 
 int main()
 {
-  // Function definition
+/*  // Function definition
   ffi_cif cif;
   ffi_type *args[3];
   void *values[3];
@@ -24,7 +29,7 @@ int main()
   ffi_type *bar_type_elements[3];
 
   bar_type.size = bar_type.alignment = 0;
-  bar_type.elements = &bar_type_elements;
+  bar_type.elements = bar_type_elements;
   bar_type.type = FFI_TYPE_STRUCT;
 
   bar_type_elements[0] = &ffi_type_sint;
@@ -41,7 +46,7 @@ int main()
   }
   void *ptr = dlsym(handler, name);
   dlclose(handler);
-  
+
   // Arguments initialization
   values[0] = &arg1;
   args[0] = &ffi_type_sint;
@@ -49,7 +54,7 @@ int main()
   args[1] = &ffi_type_pointer;
   values[2] = &arg3;
   args[2] = &bar_type;
-  
+
   // Calling :)
   if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, 3, &ffi_type_sint, args) == FFI_OK)
     {
@@ -62,6 +67,14 @@ int main()
 
       printf("And the dead beef is %d\n", res);
     }
-
+*/
+  pfDoForth(NULL, NULL, 0);
   return 0;
 }
+
+int foo(int a, char *b, bar c)
+{
+  printf("The integer is %d, string is \"%s\" and struct is  (%d, %d)\n", a, b, c.x, c.y);
+  return 0xdeadbeef;
+}
+
