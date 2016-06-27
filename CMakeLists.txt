@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.4)
 
 project(libforth)
 set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 
 set(PFORTH_BIN "pforth/build/unix")
 set(PFORTH_LIB "pforth/csrc")
@@ -28,4 +29,11 @@ target_link_libraries(forth ffi dl m)
 
 install(TARGETS forth DESTINATION lib)
 install(FILES ${PFORTH_LIB}/pforth.h DESTINATION include)
+
+add_executable(main examples/main.c)
+add_dependencies(main forth)
+target_link_libraries(main forth)
+set_target_properties(main PROPERTIES
+  EXCLUDE_FROM_ALL TRUE
+  COMPILE_FLAGS "-rdynamic")
 
