@@ -32,7 +32,7 @@
 *.dSYM/
 
 # CMake
-#CMakeCache.txt
+CMakeCache.txt
 CMakeFiles
 CMakeScripts
 Makefile
