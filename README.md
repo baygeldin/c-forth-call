@@ -8,8 +8,8 @@ Well, it's a wrapper that turns pforth to a shared library and extends it with a
 
 *Notes*: 
 * It requires libffi to be installed.
-* Current build has some dirty hacks that let pforth to be built into a shared library. It's better to stop using submodule and just make a fork of pforth. Will be much cleaner.
+* Current build has some dirty hacks that let pforth to be built into a shared library. It's better to stop using submodule and just make a fork of pforth. It'll be much cleaner.
 * Currently, strucures are not supported, but I have a good idea how to fix it.
-* Also, unit-tests and CI are also needed.
+* Unit-tests and CI are also needed.
 
 WORK IN PROGRESS.
