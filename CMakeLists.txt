@@ -11,7 +11,6 @@ set(SOURCES
   pf_cglue pf_clib pf_core pf_inner pf_io pf_io_none
   pf_mem pf_save pf_text pf_words pfcompil pf_io_posix
   ../../../src/custom)
-string(REGEX REPLACE "([^;]+)" "\\1.c" PFSOURCE "${SOURCES}")
 string(REGEX REPLACE "([^;]+)" "${PFORTH_BIN}/\\1.eo.o" PFOBJ "${SOURCES}")
 
 add_custom_command(
@@ -39,5 +38,5 @@ add_executable(main examples/main.c)
 target_link_libraries(main forth)
 set_target_properties(main PROPERTIES
   EXCLUDE_FROM_ALL TRUE
-  COMPILE_FLAGS "-rdynamic")
+  LINK_FLAGS "-rdynamic")
 
